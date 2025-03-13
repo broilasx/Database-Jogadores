@@ -14,7 +14,7 @@ public class CodinomeService {
         this.codinomeRepositoryFactory = codinomeRepositoryFactory;
     }
     
-    public String gerarCodinome(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) {
+    public String gerarCodinome(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) throws Exception {
         var codinomesDisponiveis = listarCodinomesDisponiveis(grupoCodinome, codinomesEmUso);
         if (codinomesDisponiveis.isEmpty()) {
             throw new Exception("Não há codinomes disponíveis para o grupo " + grupoCodinome.getNome());
@@ -38,5 +38,10 @@ public class CodinomeService {
     private List<String> buscarCodinomes(GrupoCodinome grupoCodinome) throws Exception {
         var codinomeRepository = codinomeRepositoryFactory.create(grupoCodinome);
         return codinomeRepository.buscarCodinomes();
+    }
+
+    private String sortearCodinome(List<String> codinomesDisponiveis) {
+        return codinomesDisponiveis
+            .get((int) (Math.random() * codinomesDisponiveis.size()));
     }
 }
