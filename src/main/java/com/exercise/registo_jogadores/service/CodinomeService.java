@@ -24,7 +24,7 @@ public class CodinomeService {
         return codinomeSorteado;
     }
 
-    private List<String> listarCodinomesDisponiveis(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) {
+    private List<String> listarCodinomesDisponiveis(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) throws Exception {
         var codinomes = buscarCodinomes(grupoCodinome);
 
         var codinomesDisponiveis = codinomes
@@ -35,7 +35,8 @@ public class CodinomeService {
         return codinomesDisponiveis;
     }
 
-    private List<String> buscarCodinomes(GrupoCodinome grupoCodinome) {
+    private List<String> buscarCodinomes(GrupoCodinome grupoCodinome) throws Exception {
         var codinomeRepository = codinomeRepositoryFactory.create(grupoCodinome);
+        return codinomeRepository.buscarCodinomes();
     }
 }
