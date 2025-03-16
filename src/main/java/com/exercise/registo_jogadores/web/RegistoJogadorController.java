@@ -37,7 +37,7 @@ public class RegistoJogadorController {
 
         try {
             jogadorService.registarJogador(jogador);
-            return "redirect:/registo-jogador";
+            return "redirect:/listagem-jogadores";
         } catch (GrupoCodinomeIndisponivelException e) {
             result.rejectValue("grupoCodinome", "grupoCodinomeIndisponivel", e.getMessage());
             return getViewAndModel(model, jogador);
