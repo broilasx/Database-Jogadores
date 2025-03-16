@@ -36,6 +36,9 @@
                 <button type="submit" class="btn btn-primary">Registar</button>
                 <a th:href="@{/listagem-jogadores}" class="btn btn-primary">Listar Jogadores</a>
             </div>
+            <div th:if="${errorMessage}">
+                <p th:text="${errorMessage}" style="color: red;"></p>
+            </div>
         </form>
     </div>
 </body>

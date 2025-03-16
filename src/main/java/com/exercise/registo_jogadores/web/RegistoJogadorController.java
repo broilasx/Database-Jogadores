@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exercise.registo_jogadores.exception.GrupoCodinomeIndisponivelException;
 import com.exercise.registo_jogadores.model.GrupoCodinome;
 import com.exercise.registo_jogadores.model.Jogador;
 import com.exercise.registo_jogadores.service.JogadorService;
@@ -33,11 +34,14 @@ public class RegistoJogadorController {
         if (result.hasErrors()) {
             return getViewAndModel(model, jogador);
         }
-        
-        jogadorService.registarJogador(jogador);
-        return "redirect:/registo-jogador";
-        
-        
+
+        try {
+            jogadorService.registarJogador(jogador);
+            return "redirect:/registo-jogador";
+        } catch (GrupoCodinomeIndisponivelException e) {
+            result.rejectValue("grupoCodinome", "grupoCodinomeIndisponivel", e.getMessage());
+            return getViewAndModel(model, jogador);
+        }
     }
 
     private String getViewAndModel(Model model, Jogador jogador) {
