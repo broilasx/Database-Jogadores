@@ -26,7 +26,7 @@ public class JogadorRepository {
         .param("email", jogador.email())
         .param("telefone", jogador.telefone())
         .param("codinome", jogador.codinome())
-        .param("grupoCodinome", jogador.grupoCodinome())
+        .param("grupoCodinome", jogador.grupoCodinome().name())
         .update();
     return jogador;     
     }

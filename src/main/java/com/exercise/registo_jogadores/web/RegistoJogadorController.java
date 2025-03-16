@@ -1,7 +1,5 @@
 package com.exercise.registo_jogadores.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,6 @@ import com.exercise.registo_jogadores.service.JogadorService;
 @Controller
 @RequestMapping("registo-jogador")
 public class RegistoJogadorController {
-    private static final Logger logger = LoggerFactory.getLogger(JogadorService.class);
     private final JogadorService jogadorService;
 
     public RegistoJogadorController(JogadorService jogadorService) {
@@ -33,7 +30,6 @@ public class RegistoJogadorController {
     @PostMapping
     public String cadastrarJogador(@ModelAttribute Jogador jogador) {
         try {
-            logger.info("Tentando registrar jogador no controller: ");
             jogadorService.registarJogador(jogador);
             return "redirect:/registo-jogador";
         } catch (Exception e) {

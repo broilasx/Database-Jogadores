@@ -2,8 +2,6 @@ package com.exercise.registo_jogadores.service;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +11,6 @@ import com.exercise.registo_jogadores.repository.JogadorRepository;
 
 @Service
 public class JogadorService {
-    private static final Logger logger = LoggerFactory.getLogger(JogadorService.class);
     private final JogadorRepository jogadorRepository;
     private final CodinomeService codinomeService;
 
@@ -24,7 +21,6 @@ public class JogadorService {
     
     @Transactional
     public Jogador registarJogador(Jogador jogador) throws Exception {
-        logger.info("Tentando registrar jogador: ");
         var codinomesEmUso = listarCodinomesEmUso(jogador.grupoCodinome());
         var novoCodinome = codinomeService.gerarCodinome(jogador.grupoCodinome(), codinomesEmUso);
 
