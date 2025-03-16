@@ -1,9 +1,5 @@
 package com.exercise.registo_jogadores.repository;
 
-import java.util.List;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClient;
 
