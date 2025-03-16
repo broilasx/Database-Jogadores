@@ -19,7 +19,7 @@ public class JogadorRepository {
 
     public Jogador salvar(Jogador jogador) {
         jdbcClient.sql("""
-            INSERT INTO jogadores (nome, email, telefone, codinome, grupo_codinome)
+            INSERT INTO JOGADORES (nome, email, telefone, codinome, grupo_codinome)
             VALUES (:nome, :email, :telefone, :codinome, :grupoCodinome)
         """)
         .param("nome", jogador.nome())
@@ -32,7 +32,7 @@ public class JogadorRepository {
     }
 
     public List<String> listarCodinomesPorGrupo(GrupoCodinome grupoCodinome) {
-        return jdbcClient.sql("SELECT distinct(codinomes) FROM JOGADORES WHERE grupo_codinome = :grupoCodinome")
+        return jdbcClient.sql("SELECT distinct(codinome) FROM JOGADORES WHERE grupo_codinome = :grupoCodinome")
             .param("grupoCodinome", grupoCodinome.name())
             .query(String.class)
             .list();

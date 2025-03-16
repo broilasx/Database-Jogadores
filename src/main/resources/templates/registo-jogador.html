@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo de Jogador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Registo de Jogador</h1>
+        <form th:action="@{/registo-jogador}" th:method="post" th:object="${jogador}">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" required>
+            </div>
+            <div>
+                <label for="email">email:</label>
+                <input type="text" id="email"  th:field="*{email}"required>
+            </div>
+            <div>
+                <label for="telefone">telefone:</label>
+                <input type="text" id="telefone" th:field="*{telefone}">
+            </div>
+            <div>
+                <label>Escolhe um grupo de Codinome</label>
+                <div th:each="grupo: ${gruposCodinomes}">
+                    <input type="radio" th:field="*{grupoCodinome}" th:value="${grupo.name()}" th:id="${grupo.name()}" required>
+                    <label th:for="${grupo.name()}" th:text="${grupo.getNome()}"></label>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Registar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
